@@ -247,7 +247,7 @@ condition:
   - condition: template
     value_template: >
       {% if mode == 'Frigate' %}
-        {{ trigger.payload_json["type"] == "end" and (state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown) and trigger.payload_json['after']['camera'] == "2nd-Floor" }}
+        {{ trigger.payload_json["type"] == "end" and (state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown) and trigger.payload_json['after']['camera'] == "2nd-floor" }}
       {% else %}
         {{ state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown }}
       {% endif %}
