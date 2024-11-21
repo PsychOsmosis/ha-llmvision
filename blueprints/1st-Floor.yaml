@@ -244,22 +244,28 @@ trigger:
     id: 'motion_sensor_trigger'
 
 condition:
-  - condition: template
-    value_template: >
-      {% if mode == 'Frigate' %}
-        {{ trigger.payload_json["type"] == "end" and (state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown) and trigger.payload_json['after']['camera'] == "1st-floor" }}
-      {% else %}
-        {{ state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown }}
-      {% endif %}
-  - condition: time
-    after: "17:00:00"
-    before: "08:00:00"
-    weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
+  - and:
+    - condition: template
+      value_template: >
+        {% if mode == 'Frigate' %}
+          {{ trigger.payload_json["type"] == "end" and (state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown) and trigger.payload_json['after']['camera'] == "1st-floor" }}
+        {% else %}
+          {{ state_attr(this.entity_id, 'last_triggered') is none or (now() - state_attr(this.entity_id, 'last_triggered')).total_seconds() / 60 > cooldown }}
+        {% endif %}
+    - or:    
+      - condition: time
+        after: "17:00:00"
+        before: "08:00:00"
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: time
+        weekday:
+          - sat
+          - sun
 
 action:
   - choose:
