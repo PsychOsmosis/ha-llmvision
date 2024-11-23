@@ -286,7 +286,7 @@ action:
                       model: !input model
                       message: "{{importance_prompt}}"
                       include_filename: true
-                      target_width: 1280
+                      target_width: 1120
                       detail: low
                       max_tokens: 3
                       temperature: 0.1
