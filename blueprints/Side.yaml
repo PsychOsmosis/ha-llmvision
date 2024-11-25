@@ -1,11 +1,11 @@
 blueprint:
-  name: PsychOsmosis Event Summary (LLM Vision v1.3.1)
+  name: PsychOsmosis Side
   author: PsychOsmosis
   description: >
     AI-powered security event summaries for frigate or camera entities. 
     Sends a notification with a preview to your phone that is updated dynamically when the AI summary is available.
   domain: automation
-  source_url: https://github.com/PsychOsmosis/ha-llmvision/blob/main/blueprints/event_summary.yaml
+  source_url: https://github.com/PsychOsmosis/ha-llmvision/blob/main/blueprints/side.yaml
   input:
     mode:
       name: Mode
